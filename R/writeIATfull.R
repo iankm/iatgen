@@ -418,8 +418,6 @@ writeIATblocks <- function(startqid=1, combined.type="alternating", foldernum=1,
   file.copy(system.file("codefiles", "html_3.txt", package="iatgen"), file.path(mainDir, subDir))
   file.copy(system.file("codefiles", "html_4.txt", package="iatgen"), file.path(mainDir, subDir))
   file.copy(system.file("codefiles", "html_5.txt", package="iatgen"), file.path(mainDir, subDir))
-  file.copy(system.file("codefiles", "html_6.txt", package="iatgen"), file.path(mainDir, subDir))
-  file.copy(system.file("codefiles", "html_7.txt", package="iatgen"), file.path(mainDir, subDir))
   file.copy(system.file("codefiles", "codeA.txt", package="iatgen"), file.path(mainDir, subDir))
   file.copy(system.file("codefiles", "codeB.txt", package="iatgen"), file.path(mainDir, subDir))
   file.copy(system.file("codefiles", "codeC.txt", package="iatgen"), file.path(mainDir, subDir))
@@ -1081,10 +1079,10 @@ writeIATfull <- function(IATname="IAT",
           q$SurveyElements$Payload[i][[1]]$Choices[1][[1]]$Display <- qtext
         }
         if (exists("q$SurveyElements$Payload[i][[1]]$Choices[7][[1]]$Display") &&
-            length(q$SurveyElements$Payload[i][[1]]$Choices[7][[1]]$Display)>0) {
-          qtext <- q$SurveyElements$Payload[i][[1]]$Choices[7][[1]]$Display
+            length(q$SurveyElements$Payload[i][[1]]$Choices[5][[1]]$Display)>0) {
+          qtext <- q$SurveyElements$Payload[i][[1]]$Choices[5][[1]]$Display
           qtext <- qsf_iat_rename("Insects", input$aName, "flowers", input$bName, qtext)
-          q$SurveyElements$Payload[i][[1]]$Choices[7][[1]]$Display <- qtext
+          q$SurveyElements$Payload[i][[1]]$Choices[5][[1]]$Display <- qtext
         }
       }
     }
