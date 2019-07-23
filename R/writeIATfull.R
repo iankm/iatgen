@@ -351,7 +351,7 @@ writeIATjs <- function(type, combined.type="alternating", n, posside, Aside, cat
 
 ############## WRITE IAT BLOCKS TO WORKING DIRECTORY FILE ##############
 
-writeIATblocks <- function(startqid=1, combined.type="alternating", foldernum=1, posname, negname, Aname, Bname, posstart, Astart, IATname="IAT", n=c(20, 20, 20, 40, 40, 20, 40),
+writeIATblocks <- function(startqid=1, combined.type="alternating", foldernum=1, posname, negname, Aname, Bname, posstart, Astart, IATname="IAT", n=c(20, 20, 20, 40, 40),
                            catType, catCol="green", poswords, negwords, nPos, nNeg, posimgs, negimgs, tgtType, tgtCol="black", nA, nB, Awords, Bwords, Aimgs, Bimgs,
                            easy.img=F, pause=250, errorpause=300, correct.error=F, note=F, imgs
                            ) {
@@ -404,7 +404,7 @@ writeIATblocks <- function(startqid=1, combined.type="alternating", foldernum=1,
   if (Astart == "right" && posstart == "left") { suffix <- "rn" } # SUFFIX ALWAYS REFLECTS STATUS OF TGT A
   if (Astart == "left" && posstart == "left") { suffix <- "lp" } # SUFFIX ALWAYS REFLECTS STATUS OF TGT A
 
-  qids <- 0:6 + startqid
+  qids <- 0:4 + startqid
 
   mainDir <- getwd()
   subDir <- paste(foldernum, " ",IATname,"_",suffix,sep="")
@@ -546,56 +546,8 @@ writeIATblocks <- function(startqid=1, combined.type="alternating", foldernum=1,
              correct.error=correct.error,
              out = paste("Q",qids[5], " JavaScript_5.txt",sep=""))
 
-  writeIATjs(type = "combined",
-             combined.type=combined.type,
-             n = n[6],
-             tgtType = tgtType,
-             tgtCol = tgtCol,
-             catType = catType,
-             catCol = catCol,
-             posside=possides[6,posstart],
-             Aside = Astart,
-             poswords = poswords,
-             negwords = negwords,
-             nPos = nPos,
-             nNeg = nNeg,
-             nA = nA,
-             nB = nA,
-             Awords = Awords,
-             Bwords = Bwords,
-             imgs=imgs,
-             pause=pause,
-             note=note,
-             errorpause=errorpause,
-             correct.error=correct.error,
-             out = paste("Q",qids[6], " JavaScript_6.txt",sep=""))
-
-  writeIATjs(type = "combined",
-             combined.type=combined.type,
-             n = n[7],
-             tgtType = tgtType,
-             tgtCol = tgtCol,
-             catType = catType,
-             catCol = catCol,
-             posside=possides[7,posstart],
-             Aside = Astart,
-             poswords = poswords,
-             negwords = negwords,
-             nPos = nPos,
-             nNeg = nNeg,
-             nA = nA,
-             nB = nA,
-             Awords = Awords,
-             Bwords = Bwords,
-             imgs=imgs,
-             pause=pause,
-             note=note,
-             errorpause=errorpause,
-             correct.error=correct.error,
-             out = paste("Q",qids[7], " JavaScript_7.txt",sep=""))
-
   ### change the html text
-  blocknames <- c("html_1.txt", "html_2.txt", "html_3.txt", "html_4.txt", "html_5.txt", "html_6.txt", "html_7.txt")
+  blocknames <- c("html_1.txt", "html_2.txt", "html_3.txt", "html_4.txt", "html_5.txt")
 
   ## NOTE: HTML files are hard-coded with the defaults (green for targets, black for categories). Thus, these just need to be swapped out for tgtCol and catCol regardless of configuration.
 
@@ -700,8 +652,6 @@ writeIATblocks <- function(startqid=1, combined.type="alternating", foldernum=1,
   file.remove("html_3.txt")
   file.remove("html_4.txt")
   file.remove("html_5.txt")
-  file.remove("html_6.txt")
-  file.remove("html_7.txt")
   setwd(mainDir) #revert WD back to original
 }
 
@@ -974,8 +924,8 @@ writeIATfull <- function(IATname="IAT",
     stop("catType argument is not correctly specified.")
   }
 
-  if (length(n) != 7){
-    stop("n argument is not correctly specified. You must provide the number of trials for all seven blocks.")
+  if (length(n) != 5){
+    stop("n argument is not correctly specified. You must provide the number of trials for all five blocks.")
   }
 
   ## BY DEFAULT, IMPLEMENTS THE EASY IMAGE METHOD. nA, nB, nPos, and nNeg not specified by user in this version. Pulls that information from image URL vectors directly.
@@ -1029,19 +979,19 @@ writeIATfull <- function(IATname="IAT",
                    tgtType = tgtType, tgtCol=tgtCol, Awords = Awords, Bwords = Bwords, nA = nA, nB = nB,
                    pause=pause, errorpause=errorpause, correct.error=correct.error, combined.type=combined.type, note=note, imgs = imgs)
 
-    writeIATblocks(startqid=(startqid+7), posstart="left", Astart="right", IATname=IATname, foldernum=2, n=n,
+    writeIATblocks(startqid=(startqid+5), posstart="left", Astart="right", IATname=IATname, foldernum=2, n=n,
                    posname = posname, negname = negname, Aname = Aname, Bname = Bname,
                    catType = catType, catCol=catCol, poswords = poswords, negwords = negwords, nPos = nPos, nNeg = nNeg,
                    tgtType = tgtType, tgtCol=tgtCol, Awords = Awords, Bwords = Bwords, nA = nA, nB = nB,
                    pause=pause, errorpause=errorpause, correct.error=correct.error, combined.type=combined.type, note=note, imgs = imgs)
 
-    writeIATblocks(startqid=(startqid+14), posstart="left", Astart="left", IATname=IATname, foldernum=3, n=n,
+    writeIATblocks(startqid=(startqid+10), posstart="left", Astart="left", IATname=IATname, foldernum=3, n=n,
                    posname = posname, negname = negname, Aname = Aname, Bname = Bname,
                    catType = catType, catCol=catCol, poswords = poswords, negwords = negwords, nPos = nPos, nNeg = nNeg,
                    tgtType = tgtType, tgtCol=tgtCol, Awords = Awords, Bwords = Bwords, nA = nA, nB = nB,
                    pause=pause, errorpause=errorpause, correct.error=correct.error, combined.type=combined.type, note=note, imgs = imgs)
 
-    writeIATblocks(startqid=(startqid+21), posstart="right", Astart="left", IATname=IATname, foldernum=4, n=n,
+    writeIATblocks(startqid=(startqid+15), posstart="right", Astart="left", IATname=IATname, foldernum=4, n=n,
                    posname = posname, negname = negname, Aname = Aname, Bname = Bname,
                    catType = catType, catCol=catCol, poswords = poswords, negwords = negwords, nPos = nPos, nNeg = nNeg,
                    tgtType = tgtType, tgtCol=tgtCol, Awords = Awords, Bwords = Bwords, nA = nA, nB = nB,
