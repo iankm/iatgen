@@ -1078,7 +1078,7 @@ writeIATfull <- function(IATname="IAT",
           qtext <- qsf_iat_rename("Insects", input$aName, "flowers", input$bName, qtext)
           q$SurveyElements$Payload[i][[1]]$Choices[1][[1]]$Display <- qtext
         }
-        if (exists("q$SurveyElements$Payload[i][[1]]$Choices[7][[1]]$Display") &&
+        if (exists("q$SurveyElements$Payload[i][[1]]$Choices[5][[1]]$Display") &&
             length(q$SurveyElements$Payload[i][[1]]$Choices[5][[1]]$Display)>0) {
           qtext <- q$SurveyElements$Payload[i][[1]]$Choices[5][[1]]$Display
           qtext <- qsf_iat_rename("Insects", input$aName, "flowers", input$bName, qtext)
